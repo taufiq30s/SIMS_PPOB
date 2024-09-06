@@ -7,8 +7,8 @@ export const redisClient: RedisClientType = createClient({
   },
 });
 
-export const redisConnect = async () => {
+export const redisConnect = () => {
   if (!redisClient.isOpen) {
-    await redisClient.connect();
+    redisClient.connect();
   }
 };
