@@ -1,11 +1,16 @@
 /* eslint-disable no-useless-catch */
 import {PoolConnection, RowDataPacket} from 'mysql2/promise';
 import {ServiceDto} from '../dto/ServiceDto';
+import {Service} from '../models/Service';
 
 export default class ServiceRepository {
   public static async getAll(connection: PoolConnection) {
-    const [rows] = await connection.query<RowDataPacket[]>(
-      'SELECT * FROM services WHERE code <> "TOPUP"'
+    const [rows] = await connection.query<Service[]>(
+      `SELECT 
+        code AS service_code,
+        name AS service_name,
+        icon AS service_icon,
+        tariff AS service_tariff FROM services WHERE code <> "TOPUP"`
     );
     return rows;
   }

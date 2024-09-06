@@ -5,8 +5,11 @@ import {ProfileDto} from '../dto/ProfileDto';
 import {MemberUpdateDto} from '../dto/MemberDto';
 
 export default class MembershipRepository {
-  public static async store(connection: PoolConnection, data: Membership) {
-    return await connection.query('INSERT INTO memberships SET ?', data);
+  public static async storeMember(
+    connection: PoolConnection,
+    data: Membership
+  ) {
+    await connection.query('INSERT INTO memberships SET ?', data);
   }
 
   public static async getByUserId(connection: PoolConnection, userId: string) {

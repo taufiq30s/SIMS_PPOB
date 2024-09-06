@@ -5,12 +5,14 @@ import {pool} from './MySQLDatabaseService';
 export default class InformationService {
   public static async getBanners() {
     const connection = await pool.getConnection();
-    return await BannerRepository.get(connection);
+    const result = await BannerRepository.get(connection);
+    return result;
   }
 
   public static async getServices() {
     const connection = await pool.getConnection();
-    return await ServiceRepository.getAll(connection);
+    const result = await ServiceRepository.getAll(connection);
+    return result;
   }
 
   public static async getService(code: string) {

@@ -27,7 +27,7 @@ export default class MembershipService {
     try {
       await connection.beginTransaction();
       await UserRepository.store(connection, user);
-      await MembershipRepository.store(connection, member);
+      await MembershipRepository.storeMember(connection, member);
       await connection.commit();
     } catch (transactionError) {
       await connection.rollback();

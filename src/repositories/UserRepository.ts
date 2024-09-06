@@ -3,7 +3,7 @@ import {User} from '../models/User';
 
 export default class UserRepository {
   public static async store(connection: PoolConnection, data: User) {
-    return await connection.query('INSERT INTO users SET ?', data);
+    await connection.query('INSERT INTO users SET ?', data);
   }
 
   public static async isEmailExists(connection: PoolConnection, email: string) {

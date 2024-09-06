@@ -1,8 +1,14 @@
-import {createClient} from 'redis';
+import {createClient, RedisClientType} from 'redis';
 
-export const redisClient = createClient({
+export const redisClient: RedisClientType = createClient({
   socket: {
     host: process.env.REDIS_HOST,
     port: Number(process.env.REDIS_PORT) || 6379,
   },
-}).connect();
+});
+
+export const redisConnect = async () => {
+  if (!redisClient.isOpen) {
+    await redisClient.connect();
+  }
+};
