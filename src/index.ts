@@ -3,10 +3,11 @@ import cors from 'cors';
 import {routers} from './routers';
 import bodyParser from 'body-parser';
 import {redisConnect} from './service/RedisService';
-import {config} from 'dotenv';
 
 if (process.env.NODE_ENV !== 'production') {
-  config();
+  import('dotenv').then(({config}) => {
+    config();
+  });
 }
 
 const app: Express = express();

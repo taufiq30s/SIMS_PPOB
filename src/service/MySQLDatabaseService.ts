@@ -1,8 +1,9 @@
 import {createPool} from 'mysql2/promise';
-import {config} from 'dotenv';
 
 if (process.env.NODE_ENV !== 'production') {
-  config();
+  import('dotenv').then(({config}) => {
+    config();
+  });
 }
 
 export const pool = createPool({
